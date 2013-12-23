@@ -11,7 +11,7 @@ function failure($cause){
 //connects to database
 //returns connection object
 function connectDB(){
-  $con = mysqli_connect("localhost","root","root","jc-demo-wf-db");
+  $con = mysqli_connect("tunnel.pagodabox.com:3306","kasi","JsHd0D2g","jc-demo-wf-db");
 
   if (mysqli_connect_errno($con))
   {

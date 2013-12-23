@@ -42,12 +42,13 @@
 			<?php
 				//On pageload, grabs the locations that personID=1 has been to with count.
 				//This is the default.
-				//Closes DB connection, since it's the display default.
+				
 				$query = "SELECT cities.cityName, COUNT(trips.cityID) AS num_trips FROM trips INNER JOIN cities ON cities.cityID=trips.cityID INNER JOIN people ON people.personID=trips.personID WHERE people.personID='"; 
 				$query .= '1' . "' GROUP BY trips.cityID";
 				$result = mysqli_query($con, $query);
 				if($result===false){error("Bad query!", $con);}
 				else{toHtmlTable($result, "Where have they been?|How Many Times?");}
+				
 			?>
 			</div>
 		</column_third>
@@ -78,8 +79,10 @@
 							<?php	
 								//Grabs a list of cities.
 								//Formats the result as an html select field.
+								//also closes connection
 			  					$result = mysqli_query($con,"SELECT * FROM people");
 								toSelect("people", "personID", "personName", $result);
+								mysqli_close($con);
 							?>
 					</column_quarter>
 	
